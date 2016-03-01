@@ -25,8 +25,10 @@ var CommentBox = React.createClass({
             <div className="commentBox">
                 <input type="text"
                        style={style}
-                       value={this.state.comment.get()}
+                       value={this.state.comment.input}
                        onChange={this.setComment}></input>
+                <div>Validated value: {this.state.comment.get()}</div>
+                <div style={style}>{this.state.comment.error()}</div>
             </div>
         );
     }
