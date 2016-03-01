@@ -7,6 +7,7 @@
     "lib/",
     "editors.js"
   ],
+  "main": "editors.js",
   "scripts": {
     "test": "node_modules/mocha/bin/mocha"
   },
