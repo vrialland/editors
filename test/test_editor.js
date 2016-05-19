@@ -23,6 +23,15 @@ const zeroValidator = function (input) {
 describe('Editor', function() {
 
   describe('Regular properties', function () {
+      it('Initial empty editor', function () {
+          var editor = createEditor();
+          assert(editor.hasValidValue());
+          assert.deepEqual({}, editor.serialize());
+
+          editor.reset();
+          assert(editor.hasValidValue());
+          assert.deepEqual({}, editor.serialize());
+      });
       it('Initial valid value', function () {
           var editor = createEditor({prop1: 42, prop2: 'dummy'});
           assert.equal(42, editor.prop1.get());
