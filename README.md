@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/ygravrand/editors.svg?branch=master)](https://travis-ci.org/ygravrand/editors)
+
 ## Description
 
 ``editors`` is a set of classes useful when entering values in
