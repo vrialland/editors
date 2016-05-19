@@ -25,6 +25,27 @@ describe('ArrayEditor', function() {
 
     describe('No argument', function () {
         var editor = createArrayEditor();
+        it('get(), value, serialize should return []', function () {
+            assert.deepEqual([], editor.get());
+            assert.deepEqual([], editor.value);
+            assert.deepEqual([], editor.serialize());
+        });
+        it('error should return empty list', function () {
+            assert.deepEqual([], editor.error());
+        });
+        it('hasValidValue() should return true', function () {
+            assert(editor.hasValidValue());
+        });
+        it('reset() should keep initial value', function () {
+            editor.reset();
+            assert.deepEqual([], editor.get());
+            assert.deepEqual([], editor.value);
+            assert.deepEqual([], editor.serialize());
+        });
+    });
+
+    describe('No argument, disabling empty arrays', function () {
+        var editor = createArrayEditor(undefined, false);
         it('get(), value, serialize should return undefined', function () {
             assert.deepEqual(undefined, editor.get());
             assert.deepEqual(undefined, editor.value);
@@ -132,14 +153,28 @@ describe('ArrayEditor', function() {
         it('error should return undefined and initial error', function () {
             assert.deepEqual([undefined, prop2.INITIAL_ERROR_STATE], editor.error());
         });
-        it('hasValidValue() should return false', function () {
-            assert(!editor.hasValidValue());
+        it('hasValidValue() should return true since at least one item has a valid value', function () {
+            assert(editor.hasValidValue());
         });
         it('reset() should keep only validated values', function () {
             editor.reset();
             assert.deepEqual([prop1], editor.get());
             assert.deepEqual([prop1], editor.value);
             assert.deepEqual([42], editor.serialize());
+        });
+
+        var prop3 = createProperty(),
+            editor2 = createArrayEditor([prop3]);
+        it('hasValidValue() should return false since no item has a valid value', function () {
+            assert(!editor2.hasValidValue());
+        });
+        it('serialize() should return an empty array', function () {
+            assert.deepEqual([], editor2.serialize());
+        });
+        it('reset() should keep only validated values', function () {
+            editor2.reset();
+            assert.deepEqual([], editor2.get());
+            assert.deepEqual([], editor2.serialize());
         });
     });
 
