@@ -9,13 +9,12 @@
 
 var assert = require('assert');
 
-var createEditor = require('../editors').createEditor;
+var { createEditor,
+      validators } = require('../editors');
 
 
 const zeroValidator = function (input) {
-    if (input != 0) {
-        throw 'Nothing except 0 allowed'
-    }
+    validators.toInt(input).isEqual(0, 'Nothing except 0 allowed');
     return input;
 };
 
@@ -166,6 +165,23 @@ describe('Editor', function() {
               editor2 = createEditor({ed1: editor1});
           assert.equal(editor1, editor2.ed1);
           // TODO hasValidValue, reset...
+      });
+  });
+
+  describe('Validation', function() {
+      it('', () => {
+         var editor = createEditor({name: '', age: 0}),
+             nameValidator = (v) => { validators.toString(v).required(); },
+             ageValidator = (v) => { validators.toInt(v).greaterThan(18); };
+         editor.name.set('John', nameValidator);
+         editor.age.set(42, ageValidator);
+         assert(editor.name.error() == null, 'name has no error');
+         assert(editor.age.error() == null, 'age has no error');
+
+         editor.name.set('', nameValidator);
+         editor.age.set(16, ageValidator);
+         assert(editor.name.error() != null, 'name has error');
+         assert(editor.age.error() != null, 'age has error');
       });
   });
 });

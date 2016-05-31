@@ -7,7 +7,8 @@
 // this distribution.
 //--
 
-const assert = require('assert');
+const assert = require('assert'),
+      createEditor = require('../editors').createEditor;
 
 const { ValidationError,
         Validator,

@@ -9,13 +9,12 @@
 
 var assert = require('assert');
 
-var createProperty = require('../editors').createProperty;
+var { createProperty,
+      validators } = require('../editors');
 
 
 const zeroValidator = function (input) {
-    if (input != 0) {
-        throw 'Nothing except 0 allowed'
-    }
+    validators.toInt(input).isEqual(0, 'Nothing except 0 allowed');
     return input;
 };
 
