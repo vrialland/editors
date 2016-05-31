@@ -177,11 +177,13 @@ describe('Editor', function() {
          editor.age.set(42, ageValidator);
          assert(editor.name.error == null, 'name has no error');
          assert(editor.age.error == null, 'age has no error');
+         assert(Object.keys(editor.errors).length == 0, 'editor has no errors');
 
          editor.name.set('', nameValidator);
          editor.age.set(16, ageValidator);
          assert(editor.name.error != null, 'name has error');
          assert(editor.age.error != null, 'age has error');
+         assert(Object.keys(editor.errors).length == 2, 'editor has 2 errors');
       });
   });
 });
