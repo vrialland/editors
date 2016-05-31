@@ -42,6 +42,11 @@ describe('Test base validator', () => {
         assert.throws(() => { new Validator('   ', true).required(); }, /Can't be empty/, 'Trimmed string test failed');
         assert.doesNotThrow(() => { new Validator('test').required(); }, ValidationError);
     });
+
+    it('Test isEqual', () => {
+        assert.throws(() => { new Validator('hello').isEqual('bye'); }, /Must equal bye/, 'isEqual(bye) failed');
+        assert.doesNotThrow(() => { new Validator('hello').isEqual('hello'); }, ValidationError);
+    });
 });
 
 describe('Test StringValidator', function() {
@@ -248,5 +253,28 @@ describe('Test UrlValidator', function() {
         for (var url of no_matches) {
             assert.throws(() => { toUrl(url); }, /Must be a valid URL/, 'test with ' + url + ' failed');
         }
+    });
+});
+
+describe('Test validator chaining', () => {
+    it('Everything is OK', () => {
+        var a = new StringValidator('hello').required(),
+            b = (v) => { new StringValidator(v).isLowerCase(); },
+            c = (v) => { new StringValidator(v).isEqual('hello'); };
+        assert.doesNotThrow(() => { a.chain(b, c) }, ValidationError, 'Chain with no errors failed');
+    });
+
+    it('First is wrong', () => {
+        var a = (v) => { new StringValidator(v).isUpperCase() },
+            b = (v) => { new StringValidator(v).required(); },
+            c = (v) => { new StringValidator(v).isEqual('hello'); };
+        assert.throws(() => { a('hello').chain(b, c); }, /Must be uppercase/, 'Chain with failure on 1st element failed');
+    });
+
+    it('Other is wrong', () => {
+        var a = new StringValidator('hello').required(),
+            b = (v) => { new StringValidator(v).isUpperCase(); },
+            c = (v) => { new StringValidator(v).isEqual('hello'); };
+        assert.throws(() => { a.chain(b, c); }, /Must be uppercase/, 'Chain with failure on other element failed');
     });
 });
