@@ -7,10 +7,10 @@
 // this distribution.
 //--
 
-var assert = require('assert');
+const assert = require('assert');
 
-var createProperty = require('../editors').createProperty,
-    createArrayEditor = require('../editors').createArrayEditor;
+const { createProperty,
+        createArrayEditor } = require('../editors');
 
 
 const zeroValidator = function (input) {
@@ -198,6 +198,11 @@ describe('ArrayEditor', function() {
             assert.deepEqual([prop1, prop2], editor.value);
             assert.deepEqual([42, 0], editor.serialize());
         });
+    });
+
+    describe('Test isEditor', () => {
+        assert(createArrayEditor([]).isEditor);
+        assert(createArrayEditor([]).constructor.isEditor);
     });
 
 });
