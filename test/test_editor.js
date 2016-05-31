@@ -175,13 +175,13 @@ describe('Editor', function() {
              ageValidator = (v) => { validators.toInt(v).greaterThan(18); };
          editor.name.set('John', nameValidator);
          editor.age.set(42, ageValidator);
-         assert(editor.name.error() == null, 'name has no error');
-         assert(editor.age.error() == null, 'age has no error');
+         assert(editor.name.error == null, 'name has no error');
+         assert(editor.age.error == null, 'age has no error');
 
          editor.name.set('', nameValidator);
          editor.age.set(16, ageValidator);
-         assert(editor.name.error() != null, 'name has error');
-         assert(editor.age.error() != null, 'age has error');
+         assert(editor.name.error != null, 'name has error');
+         assert(editor.age.error != null, 'age has error');
       });
   });
 });

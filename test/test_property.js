@@ -30,7 +30,7 @@ describe('Property', function() {
           assert.equal(-1, prop.serialize());
       });
       it('error should return null', function () {
-          assert.equal(null, prop.error());
+          assert.equal(null, prop.error);
       });
       it('hasValidValue() should return true', function () {
           assert(prop.hasValidValue());
@@ -53,7 +53,7 @@ describe('Property', function() {
           assert.equal('dummy', prop.serialize());
       });
       it('error should return null', function () {
-          assert.equal(null, prop.error());
+          assert.equal(null, prop.error);
       });
       it('hasValidValue() should return true', function () {
           assert(prop.hasValidValue());
@@ -76,7 +76,7 @@ describe('Property', function() {
           assert.deepEqual([1, 2, 3], prop.serialize());
       });
       it('error should return null', function () {
-          assert.equal(null, prop.error());
+          assert.equal(null, prop.error);
       });
       it('hasValidValue() should return true', function () {
           assert(prop.hasValidValue());
@@ -102,7 +102,7 @@ describe('Property', function() {
           assert.equal('yay!', prop.value());
       });
       it('error should return null', function () {
-          assert.equal(null, prop.error());
+          assert.equal(null, prop.error);
       });
       it('hasValidValue() should return true', function () {
           assert(prop.hasValidValue());
@@ -132,7 +132,7 @@ describe('Property', function() {
               assert.equal(test, prop.serialize());
           });
           it('error should return null', function () {
-              assert.equal(null, prop.error());
+              assert.equal(null, prop.error);
           });
           it('hasValidValue() should return true', function () {
               assert(prop.hasValidValue());
@@ -156,7 +156,7 @@ describe('Property', function() {
           assert.equal(undefined, prop.serialize());
       });
       it('error should return an error', function () {
-          assert.equal(prop.INITIAL_ERROR_STATE, prop.error());
+          assert.equal(prop.INITIAL_ERROR_STATE, prop.error);
       });
       it('hasValidValue() should return false', function () {
           assert(!prop.hasValidValue());
@@ -180,7 +180,7 @@ describe('Property', function() {
           assert.equal(2, prop.serialize());
       });
       it('error should return null', function () {
-          assert.equal(null, prop.error());
+          assert.equal(null, prop.error);
       });
       it('hasValidValue() should return true', function () {
           assert(prop.hasValidValue());
@@ -204,7 +204,7 @@ describe('Property', function() {
           assert.equal(0, prop.serialize());
       });
       it('error should return null', function () {
-          assert.equal(null, prop.error());
+          assert.equal(null, prop.error);
       });
       it('hasValidValue() should return true', function () {
           assert(prop.hasValidValue());
@@ -230,7 +230,7 @@ describe('Property', function() {
           assert.equal(2, prop.input);
       });
       it('error should return error', function () {
-          assert.equal('Nothing except 0 allowed', prop.error());
+          assert.equal('Nothing except 0 allowed', prop.error);
       });
       it('hasValidValue() should return true', function () {
           assert(prop.hasValidValue());
@@ -256,7 +256,7 @@ describe('Property', function() {
           assert.equal(2, prop.input);
       });
       it('error should return error', function () {
-          assert.equal('Nothing except 0 allowed', prop.error());
+          assert.equal('Nothing except 0 allowed', prop.error);
       });
       it('hasValidValue() should return false', function () {
           assert(!prop.hasValidValue());
@@ -282,7 +282,7 @@ describe('Property', function() {
           assert.equal(0, prop.input);
       });
       it('error should return null', function () {
-          assert.equal(null, prop.error());
+          assert.equal(null, prop.error);
       });
       it('hasValidValue() should return true', function () {
           assert(prop.hasValidValue());

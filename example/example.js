@@ -20,7 +20,7 @@ var CommentBox = React.createClass({
     },
 
     render: function () {
-        var style = this.state.comment.error() != null ? {'color': 'red'} : {}
+        var style = this.state.comment.error != null ? {'color': 'red'} : {}
         return (
             <div className="commentBox">
                 <input type="text"
