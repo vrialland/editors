@@ -4,12 +4,13 @@ var path = require("path"),
 module.exports = {
 
     entry: {
-        'editors': path.resolve(__dirname, 'editors')
+        //'editors': path.resolve(__dirname, 'editors'),
+        'example': path.resolve(__dirname, 'example/example')
     },
 
     output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: '[name].min.js'
+        path: path.resolve(__dirname, 'example'),
+        filename: '[name]-bundle.min.js'
     },
 
     module: {

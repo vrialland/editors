@@ -23,8 +23,7 @@ The module also exports a ``validators`` object with some frequently used valida
 Build the example with:
 
 ```
-npm install
-node_modules/.bin/webpack --debug --watch
+npm run example
 ```
 
 And open ``example/index.html``
