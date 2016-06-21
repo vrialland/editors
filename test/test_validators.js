@@ -7,7 +7,7 @@
 // this distribution.
 //--
 
-const assert = require('assert'),
+const assert = require('chai').assert,
       createEditor = require('../editors').createEditor;
 
 const { ValidationError,
@@ -257,21 +257,21 @@ describe('Test UrlValidator', function() {
 });
 
 describe('Test validator chaining', () => {
-    it('Everything is OK', () => {
+    it('When all validators are OK', () => {
         var a = new StringValidator('hello').required(),
             b = (v) => { new StringValidator(v).isLowerCase(); },
             c = (v) => { new StringValidator(v).isEqual('hello'); };
-        assert.doesNotThrow(() => { a.chain(b, c) }, ValidationError, 'Chain with no errors failed');
+        assert.equal('hello', a.chain(b, c), 'No validation error');
     });
 
-    it('First is wrong', () => {
+    it('When first validator is wrong', () => {
         var a = (v) => { new StringValidator(v).isUpperCase() },
             b = (v) => { new StringValidator(v).required(); },
             c = (v) => { new StringValidator(v).isEqual('hello'); };
         assert.throws(() => { a('hello').chain(b, c); }, /Must be uppercase/, 'Chain with failure on 1st element failed');
     });
 
-    it('Other is wrong', () => {
+    it('When the other validator is wrong', () => {
         var a = new StringValidator('hello').required(),
             b = (v) => { new StringValidator(v).isUpperCase(); },
             c = (v) => { new StringValidator(v).isEqual('hello'); };

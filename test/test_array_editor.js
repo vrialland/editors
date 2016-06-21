@@ -7,7 +7,7 @@
 // this distribution.
 //--
 
-const assert = require('assert');
+const assert = require('chai').assert;
 
 const { createProperty,
         createArrayEditor } = require('../editors');
