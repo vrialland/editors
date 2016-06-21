@@ -97,8 +97,8 @@ describe('ArrayEditor', function() {
             assert.equal('dummy', editor.get()[1].get());
             assert.deepEqual([42, 'dummy'], editor.serialize());
         });
-        it('error should return undefined', function () {
-            assert.deepEqual([undefined, undefined], editor.error);
+        it('error should return nulls', function () {
+            assert.deepEqual([null, null], editor.error);
         });
         it('hasValidValue() should return true', function () {
             assert(editor.hasValidValue());
@@ -150,8 +150,8 @@ describe('ArrayEditor', function() {
         it('serialize() should return valid values', function () {
             assert.deepEqual([42], editor.serialize());
         });
-        it('error should return undefined and initial error', function () {
-            assert.deepEqual([undefined, prop2.INITIAL_ERROR_STATE], editor.error);
+        it('error should return null and initial error', function () {
+            assert.deepEqual([null, prop2.INITIAL_ERROR_STATE], editor.error);
         });
         it('hasValidValue() should return true since at least one item has a valid value', function () {
             assert(editor.hasValidValue());
@@ -185,8 +185,8 @@ describe('ArrayEditor', function() {
 
         prop2.set(0, zeroValidator);
 
-        it('error should return undefined', function () {
-            assert.deepEqual([undefined, undefined], editor.error);
+        it('error should return nulls', function () {
+            assert.deepEqual([null, null], editor.error);
         });
 
         it('hasValidValue() should return true', function () {
