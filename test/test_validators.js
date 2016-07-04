@@ -261,7 +261,7 @@ describe('Test validator chaining', () => {
         var a = new StringValidator('hello').required(),
             b = (v) => { new StringValidator(v).isLowerCase(); },
             c = (v) => { new StringValidator(v).isEqual('hello'); };
-        assert.equal('hello', a.chain(b, c), 'No validation error');
+        assert.equal('hello', a.chain(b, c).get(), 'No validation error');
     });
 
     it('When first validator is wrong', () => {
