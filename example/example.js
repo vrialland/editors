@@ -14,7 +14,7 @@ var CommentBox = React.createClass({
     },
 
     setComment: function (e) {
-        this.state.comment.set(e.target.value, (v) => { return validators.toString(v).maxLength(20); });
+        this.state.comment.set(e.target.value, (v) => { return validators.toString(v).maxLength(20).get(); });
         // Force React to update...
         this.setState({comment: this.state.comment});
     },
